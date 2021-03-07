@@ -1,0 +1,6 @@
+[dev]
+127.0.0.1
+
+[dev:vars]
+ansible_connection=local
+ansible_python_interpreter=/usr/bin/python3
