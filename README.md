@@ -1,4 +1,4 @@
-# Debian/Ubuntu Setup
+# Debian/Ubuntu and Mac Setup
 This project installs all the necessary applications I need for day-to-day work and personal time. If you want to update any files that need to be installed please feel free to use my code.
 
 Files that will be installed are as follows:
@@ -12,5 +12,4 @@ Files that will be installed are as follows:
 - Configure UFW to allow SSH and deny all other incoming traffic
 
 ## Other areas that I need to overview
-I want to see what I can do with VSC extensions because there are quite a handful I would want to install
-into the system. I am having a hard time installing them with the Ansible script so in the mean time, I suggest you incorporate an extension named [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). This extension will allow you to install all extensions towards another environment. Very convenient.
+I want to see what I can do with VSC extensions because there are quite a handful I would want to install into the system. I am having a hard time installing them with the Ansible script so in the mean time, I suggest you incorporate an extension named [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). This extension will allow you to install all extensions towards another environment. Very convenient.
