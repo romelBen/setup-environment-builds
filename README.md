@@ -18,10 +18,10 @@ I want to see what I can do with VSC extensions because there are quite a handfu
 ## Mac Setup
 Installing the Mac setup will require prerequisites until you can run the Ansible setup.
 
-1.) Install [Homebrew](https://dev.to/kodebae/how-to-install-homebrew-and-other-packages-on-m1-macbook-4585)(This is for Mac M1s, just a disclaimer since the other chips are easier to install than Mac M1s.)
-2.) Install Python `brew install python`
-3.) [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-macos)
-4.) Run `ansible-playbook main.yml dev-installation.yml` in the directory. If you want to SSH into another Mac environment make sure to update your `inventory` file and add `-i inventory` when running the Ansible script.
+1. Install [Homebrew](https://dev.to/kodebae/how-to-install-homebrew-and-other-packages-on-m1-macbook-4585)(This is for Mac M1s, just a disclaimer since the other chips are easier to install than Mac M1s.)
+2. Install Python `brew install python`
+3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-macos)
+4. Run `ansible-playbook main.yml dev-installation.yml` in the directory. If you want to SSH into another Mac environment make sure to update your `inventory` file and add `-i inventory` when running the Ansible script.
 
 ## Acknowledgements
 This playbook is heavily inspired by Jeff Geerling's mac-dev-playbook. Please use my code to your use.
