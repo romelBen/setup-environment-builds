@@ -24,4 +24,4 @@ Installing the Mac setup will require prerequisites until you can run the Ansibl
 4. Run `ansible-playbook main.yml dev-installation.yml` in the directory. If you want to SSH into another Mac environment make sure to update your `inventory` file and add `-i inventory` when running the Ansible script.
 
 ## Acknowledgements
-This playbook is heavily inspired by Jeff Geerling's mac-dev-playbook. Please use my code to your use.
+This playbook is heavily inspired by Jeff Geerling's mac-dev-playbook. Please make use of my code to your liking. Hope this helps others you want to create an environment in a much faster way.
