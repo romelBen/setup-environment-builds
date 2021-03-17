@@ -1,0 +1,11 @@
+---
+
+- name: Checkout dotfiles
+  git:
+    repo: https://github.com/romelBen/dotfiles
+    dest: ~/workspace/settings/dotfiles
+
+- name: Run 'setup' target
+  make:
+    chdir: ~/workspace/settings/dotfiles
+    target: setup

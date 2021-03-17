@@ -1,8 +1,8 @@
 ---
-- hosts: all
+- hosts: localhost
 
   vars_files:
-    - default.config.yml
+    - config.yml
 
   pre_tasks:
     - name: Include playbook configuration.
@@ -16,8 +16,10 @@
       tags: [homebrew]
     - role: mas
       tags: [mas]
-    - role: settings
-      tags: [settings]
+    - role: dotfiles
+      tags: [dotfiles]
+#    - role: settings
+#      tags: [settings]
 
   tasks:
     - include_tasks: tasks/ansible-setup.yml
@@ -25,8 +27,8 @@
     - include_tasks: tasks/sudoers.yml
       when: configure_sudoers
 
-#    - include_tasks: tasks/terminal.yml
-#      when: configure_terminal
+    # - include_tasks: tasks/terminal.yml
+    #   when: configure_terminal
 
     - include_tasks: tasks/osx.yml
       when: configure_osx

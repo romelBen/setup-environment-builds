@@ -22,4 +22,4 @@
     state: "{{ item.state | default('present') }}"
     install_options: "{{ item.install_options | default(omit) }}"
   loop: "{{ homebrew_packages }}"
-  when: homebrew_packages | default([]) | count > 0"
+  when: homebrew_packages | default([]) | count > 0
