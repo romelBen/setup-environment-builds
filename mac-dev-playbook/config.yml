@@ -23,7 +23,7 @@ dotfiles_files:
   - .vimrc
 
 homebrew_packages:
-  # - ansible # Installed via Pip.
+#  - ansible # Installed via Pip.
   - autoconf
   - bash-completion@2
   - bash
@@ -33,7 +33,7 @@ homebrew_packages:
   - git
   - gh
   - go
-  - gpg-suite
+#  - gpg-suite
   - httpie
   - iperf
   - libevent
