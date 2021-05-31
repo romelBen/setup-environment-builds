@@ -1,0 +1,108 @@
+---
+- name: '[users] Create ohmyzsh cache directory on Darwin'
+  file:
+    path: "{{ ohmyzsh_cache_dir }}"
+    state: directory
+    mode: 0644
+    owner: "{{ item.user }}"
+    group: "{{ 'wheel' if item.user == 'root' else 'staff' }}"
+  when:
+  - "item.state is not defined or 'present'in item.state"
+  - "'Darwin' in ansible_os_family"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Copy default zshrc to user home directory'
+  template:
+    src: zshrc.j2
+    dest: "{{ ohmyzsh_root_dir if item.user == 'root' else ohmyzsh_home_dir ~ item.user }}/.zshrc"
+    mode: 0644
+    owner: "{{ item.user }}"
+    group: "{{ item.user if ansible_os_family != 'Darwin' else 'wheel' if item.user == 'root' else 'staff' }}"
+  when: "item.state is not defined or 'present'in item.state"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Create directory structure'
+  file:
+    path: "{{ ohmyzsh_root_dir if item.user == 'root' else ohmyzsh_home_dir ~ item.user }}/.zsh"
+    state: directory
+    recurse: yes
+    owner: "{{ item.user }}"
+    group: "{{ item.user if ansible_os_family != 'Darwin' else 'wheel' if item.user == 'root' else 'staff' }}"
+  when: "item.state is not defined or 'present'in item.state"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Generate default aliases'
+  template:
+    src: zsh/aliases.j2
+    dest: "{{ ohmyzsh_root_dir if item.user == 'root' else ohmyzsh_home_dir ~ item.user }}/.zsh/aliases"
+    mode: 0644
+    owner: "{{ item.user }}"
+    group: "{{ item.user if ansible_os_family != 'Darwin' else 'wheel' if item.user == 'root' else 'staff' }}"
+  when: "item.state is not defined or 'present'in item.state"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Generate custom aliases'
+  template:
+    src: zsh/aliases.local.j2
+    dest: "{{ ohmyzsh_root_dir if item.user == 'root' else ohmyzsh_home_dir ~ item.user }}/.zsh/aliases.local"
+    mode: 0644
+    owner: "{{ item.user }}"
+    group: "{{ item.user if ansible_os_family != 'Darwin' else 'wheel' if item.user == 'root' else 'staff' }}"
+  when: "item.state is not defined or 'present'in item.state"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Generate Powerlevel9k custom configuration'
+  copy:
+    src: omz_powerlevel9k.cfg
+    dest: "{{ ohmyzsh_root_dir if item.user == 'root' else ohmyzsh_home_dir ~ item.user }}/.zsh/"
+    mode: 0644
+    owner: "{{ item.user }}"
+    group: "{{ item.user if ansible_os_family != 'Darwin' else 'wheel' if item.user == 'root' else 'staff' }}"
+  when:
+  - "item.state is not defined or 'present'in item.state"
+  - ohmyzsh_powerlevel9k is defined
+  - ohmyzsh_powerlevel9k
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Add custom sudoers config to not reset environment variables when doing `sudo -s` for each zsh user'
+  template:
+    src: sudoers.d/user.j2
+    dest: "/etc/sudoers.d/{{ item.user }}"
+    mode: 0440
+    owner: root
+    group: "{{ 'root' if ansible_os_family != 'Darwin' else 'wheel' }}"
+  when:
+  - ohmyzsh_powerlevel9k is defined
+  - ohmyzsh_powerlevel9k
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Set zsh as default shell'
+  user: name={{ item.user }} shell=/bin/zsh
+  when: "item.state is not defined or 'present'in item.state"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+
+- name: '[users] Set bash as default shell for uninstalled users'
+  user: name={{ item.user }} shell=/bin/bash
+  when:
+  - item.state is defined
+  - "'absent' in item.state"
+  with_items: "{{ ohmyzsh_users }}"
+  become: yes
+  tags: ohmyzsh
+...

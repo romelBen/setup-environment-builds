@@ -18,6 +18,8 @@
       tags: [mas]
     - role: dotfiles
       tags: [dotfiles]
+    - role: ohmyzsh
+      tags: [ohmyzsh]
 #    - role: settings
 #      tags: [settings]
 
