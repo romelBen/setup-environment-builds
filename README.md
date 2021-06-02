@@ -16,11 +16,11 @@ Files that will be installed are as follows:
 I want to see what I can do with VSC extensions because there are quite a handful I would want to install into the system. I am having a hard time installing them with the Ansible script so in the mean time, I suggest you incorporate an extension named [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). This extension will allow you to install all extensions towards another environment. Very convenient.
 
 ## Mac Setup
-Installing the Mac setup will require prerequisites until you can run the Ansible setup.
+Installing the Mac setup will require prerequisites until you can run the Ansible setup. (The installation process will be done on Mac1 environment.)
 
-1. Install [Homebrew](https://dev.to/kodebae/how-to-install-homebrew-and-other-packages-on-m1-macbook-4585)(This is for Mac M1s, just a disclaimer since the other chips are easier to install than Mac M1s.)
+1. Install [Homebrew](https://dev.to/kodebae/how-to-install-homebrew-and-other-packages-on-m1-macbook-4585)
 2. Install Python `brew install python`
-3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-macos)
+3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-macos) `pip3 install ansible`
 4. Run `ansible-playbook main.yml dev-installation.yml` in the directory. If you want to SSH into another Mac environment make sure to update your `inventory` file and add `-i inventory` when running the Ansible script.
 
 ## Acknowledgements
